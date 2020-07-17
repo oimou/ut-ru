@@ -1,7 +1,15 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-alert show variant="danger">
+      <b-icon-exclamation-triangle-fill></b-icon-exclamation-triangle-fill>
+      このアプリには市販教科書の内容が多く含まれています。絶対にURLやパスワード等を公開しないでください
+    </b-alert>
+
+    <b-alert show variant="primary">
+      期末試験形式で問題をランダムに出してくれるだけのアプリです。答えは出ませんので振り返りはセルフサービスでお願いします。
+    </b-alert>
+
+    <HelloWorld />
   </div>
 </template>
 
@@ -23,6 +31,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
