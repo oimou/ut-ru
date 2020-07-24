@@ -7,7 +7,7 @@
       </h2>
       <b-form-group>
         <b-form-checkbox v-model="show_verb_type">
-          動詞の変化を表示する
+          動詞の変化を表示
         </b-form-checkbox>
       </b-form-group>
       <p>
@@ -44,16 +44,23 @@
         <span>3. 男性名詞の単数格変化</span>
         <b-badge pill variant="light">{{ nouns_M.length }}</b-badge>
       </h2>
+      <b-form-group>
+        <b-form-checkbox v-model="show_accent">
+          アクセント移動・出没母音を表示
+        </b-form-checkbox>
+      </b-form-group>
       <p>
         <b-badge>{{ noun_M['課'] }}課</b-badge>
-        <span v-b-popover.hover.top="noun_M['意味']">{{ noun_M['単語'] }} の</span>
+        <span v-b-popover.hover.top="noun_M['意味']">{{ noun_M['単語'] }}</span>
+        <span v-if="show_accent"> {{ noun_M['男性名詞出没母音'] ? '[出]' : '' }}{{ noun_M['男性名詞アクセント移動'] ? '[ア]' : '' }}</span>
+        <span> の</span>
       </p>
       <ul>
-        <li>生格</li>
-        <li>与格</li>
-        <li>対格</li>
-        <li>造格</li>
-        <li>前置格</li>
+        <li><span class="conj-sei">生格</span></li>
+        <li><span class="conj-yo">与格</span></li>
+        <li><span class="conj-tai">対格</span></li>
+        <li><span class="conj-zou">造格</span></li>
+        <li><span class="conj-zen">前置格</span></li>
       </ul>
       <p>を答えなさい。</p>
       <button class="btn btn-primary" @click="update_nouns_M">Shuffle</button>
@@ -69,11 +76,11 @@
         <span v-b-popover.hover.top="noun_F_N['意味']">{{ noun_F_N['単語'] }} の</span>
       </p>
       <ul>
-        <li>生格</li>
-        <li>与格</li>
-        <li>対格</li>
-        <li>造格</li>
-        <li>前置格</li>
+        <li><span class="conj-sei">生格</span></li>
+        <li><span class="conj-yo">与格</span></li>
+        <li><span class="conj-tai">対格</span></li>
+        <li><span class="conj-zou">造格</span></li>
+        <li><span class="conj-zen">前置格</span></li>
       </ul>
       <p>を答えなさい。</p>
       <button class="btn btn-primary" @click="update_nouns_F_N">Shuffle</button>
@@ -225,6 +232,7 @@ export default {
   data () {
     return {
       show_verb_type: false,
+      show_accent: false,
       min_chapter_1_6: 1,
 
       verbs_1_2: [],
@@ -396,6 +404,28 @@ ul {
 
   .badge {
     margin-right: 5px;
+  }
+}
+
+.conj {
+  &-sei {
+    color: #229954;
+  }
+
+  &-yo {
+    color: #D4AC0D;
+  }
+
+  &-tai {
+    color: #2E86C1;
+  }
+
+  &-zen {
+    color: #CB4335;
+  }
+
+  &-zou {
+    color: #884EA0;
   }
 }
 </style>
